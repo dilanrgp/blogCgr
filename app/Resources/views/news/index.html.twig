@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>News list</h1>
+    
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Resumen</th>
+                <th>Contenido</th>
+                <th>Fecha</th>
+                <th>Slug</th>
+                <th>Imagen</th>
+                <th>Publicado</th>
+                <th>Fechainsert</th>
+                <th>Fechaupdate</th>
+                <th>Usuarioinsert</th>
+                <th>Usuarioupdate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for news in news %}
+            <tr>
+                <td><a href="{{ path('news_show', { 'id': news.id }) }}">{{ news.id }}</a></td>
+                <td>{{ news.titulo }}</td>
+                <td>{{ news.resumen }}</td>
+                <td>{{ news.contenido }}</td>
+                <td>{% if news.fecha %}{{ news.fecha|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ news.slug }}</td>
+                <td>{% if news.imagen != '0' %}
+                    <img width="80px" src="{{ asset('/uploads/images/')}}{{ news.imagen }}"></td>
+                    {% else %}
+                    No Imagen
+                    {% endif %}
+                <td>{% if news.publicado %}Yes{% else %}No{% endif %}</td>
+                <td>{% if news.fechaInsert %}{{ news.fechaInsert|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if news.fechaUpdate %}{{ news.fechaUpdate|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ news.usuarioInsert }}</td>
+                <td>{{ news.usuarioUpdate }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('news_show', { 'id': news.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('news_edit', { 'id': news.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('news_new') }}">Create a new news</a>
+        </li>
+    </ul>
+{% endblock %}

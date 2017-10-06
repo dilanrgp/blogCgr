@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tipocontenidos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Descripcion</th>
+                <th>Publicado</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tipoContenido in tipoContenidos %}
+            <tr>
+                <td><a href="{{ path('tipocontenido_show', { 'id': tipoContenido.id }) }}">{{ tipoContenido.id }}</a></td>
+                <td>{{ tipoContenido.titulo }}</td>
+                <td>{{ tipoContenido.descripcion }}</td>
+                <td>{% if tipoContenido.publicado %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tipocontenido_show', { 'id': tipoContenido.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tipocontenido_edit', { 'id': tipoContenido.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tipocontenido_new') }}">Create a new tipoContenido</a>
+        </li>
+    </ul>
+{% endblock %}

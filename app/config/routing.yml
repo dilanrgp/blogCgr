@@ -1,0 +1,28 @@
+homepage:
+    path: /
+    defaults: { _controller: BlogBundle:News:index }
+
+ldap:
+    path: /log_ldap
+    defaults: { _controller: BlogBundle:News:logLdap }
+
+blog_news:
+    resource: "@BlogBundle/Controller/NewsController.php"
+    type:     annotation
+
+blog_tipo_contenido:
+    resource: "@BlogBundle/Controller/TipoContenidoController.php"
+    type:     annotation
+
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+blog:
+    resource: "@BlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

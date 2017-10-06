@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>News</h1>
+    
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ news.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ news.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Resumen</th>
+                <td>{{ news.resumen }}</td>
+            </tr>
+            <tr>
+                <th>Contenido</th>
+                <td>{{ news.contenido }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{% if news.fecha %}{{ news.fecha|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ news.slug }}</td>
+            </tr>
+            <tr>
+                <th>Imagen</th>
+                <td>{{ news.imagen }}</td>
+            </tr>
+            <tr>
+                <th>Publicado</th>
+                <td>{% if news.publicado %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechainsert</th>
+                <td>{% if news.fechaInsert %}{{ news.fechaInsert|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechaupdate</th>
+                <td>{% if news.fechaUpdate %}{{ news.fechaUpdate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Usuarioinsert</th>
+                <td>{{ news.usuarioInsert }}</td>
+            </tr>
+            <tr>
+                <th>Usuarioupdate</th>
+                <td>{{ news.usuarioUpdate }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('news_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('news_edit', { 'id': news.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+        <li>
+            <a href="{{ path('news_sendEmail',{'name':'dilanrgp@gmail.com'})}}">Enviar Mail</a>
+        </li>
+    </ul>
+{% endblock %}
